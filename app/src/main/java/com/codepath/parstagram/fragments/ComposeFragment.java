@@ -125,7 +125,7 @@ public class ComposeFragment extends Fragment {
             public void onClick(View v) {
                 ParseUser.logOut();
                 ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
-               // goLoginActivity();
+                goLoginActivity();
             }
         });
 
@@ -220,9 +220,9 @@ public class ComposeFragment extends Fragment {
     }
 
 
-/*    private void goLoginActivity() {
+    private void goLoginActivity() {
         Intent i = new Intent(getContext(), LoginActivity.class);
         startActivity(i);
-        finish();
-    }*/
+        getActivity().finish();
+    }
 }

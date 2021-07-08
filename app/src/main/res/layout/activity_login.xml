@@ -44,4 +44,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="login" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="sign up" />
 </RelativeLayout>
