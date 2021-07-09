@@ -1,6 +1,8 @@
 package com.codepath.parstagram;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.codepath.parstagram.fragments.DetailsFragment;
 import com.parse.ParseFile;
 
 import java.util.List;
@@ -60,6 +63,23 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>{
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    int position = getAdapterPosition();
+                    Post post = posts.get(position);
+                    bundle.putString("user", post.getUser().getUsername());
+                    bundle.putString("description", post.getDescription());
+                    //bundle.putString("image", post.getImage());
+                    DetailsFragment details = new DetailsFragment();
+                    details.setArguments(bundle);
+
+                    ((MainActivity)context).switchContent(R.id.flContainer, details);
+
+                }
+            });
         }
 
         public void bind(Post post) {

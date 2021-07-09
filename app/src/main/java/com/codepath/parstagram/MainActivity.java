@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 
+    public void switchContent(int id, Fragment fragment) {
+        fragmentManager.beginTransaction().replace(id, fragment).addToBackStack(null).commit();
+    }
 
 
 }
