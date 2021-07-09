@@ -5,11 +5,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +25,11 @@ public class DetailsFragment extends Fragment {
     private TextView tvDescription;
     private TextView tvTime;
     private ImageView ivProfile;
+
+    private ImageButton ibLike;
+    private ImageButton ibComment;
+    private ImageButton ibDirect;
+
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -45,6 +52,9 @@ public class DetailsFragment extends Fragment {
         tvDescription = view.findViewById(R.id.tvDescription);
         tvTime = view.findViewById(R.id.tvTime);
         ivProfile = view.findViewById(R.id.ivProfile);
+        ibLike = view.findViewById(R.id.ibLike);
+        ibComment = view.findViewById(R.id.ibComment);
+        ibDirect = view.findViewById(R.id.ibDirect);
 
         Bundle bundle = this.getArguments();
         String user = bundle.getString("user");
