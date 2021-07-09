@@ -87,7 +87,7 @@ public class PostsFragment extends Fragment {
         // limit query to latest 20 items
         query.setLimit(20);
         // order posts by creation date (newest first)
-        query.addDescendingOrder("createdAt");
+        query.addDescendingOrder(Post.KEY_CREATED_KEY);
         query.findInBackground(new FindCallback<Post>() {
             public void done(List<Post> posts, ParseException e) {
                 if (e != null) {

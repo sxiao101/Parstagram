@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codepath.parstagram.LoginActivity;
@@ -49,6 +50,8 @@ public class ComposeFragment extends Fragment {
     private Button btnSubmit;
     private File photoFile;
     private String photoFileName= "photo.jpg";
+    private ProgressBar pb;
+
     public ComposeFragment() {
         // Required empty public constructor
     }
@@ -67,6 +70,7 @@ public class ComposeFragment extends Fragment {
         btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
+        pb = (ProgressBar) view.findViewById(R.id.pbLoading);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +150,8 @@ public class ComposeFragment extends Fragment {
     }
 
     private void savePost(String description, ParseUser currentUser, File photoFile) {
+
+        pb.setVisibility(ProgressBar.VISIBLE);
         Post post = new Post();
         post.setDescription(description);
         post.setImage(new ParseFile(photoFile));
@@ -153,6 +159,7 @@ public class ComposeFragment extends Fragment {
         post.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
+                pb.setVisibility(ProgressBar.GONE);
                 if (e != null) {
                     Log.e(TAG, "Error while saving", e);
                     Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();

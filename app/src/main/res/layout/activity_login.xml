@@ -7,15 +7,30 @@
     tools:context=".LoginActivity">
 
 
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="300dp"
+        android:layout_height="130dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="151dp"
+        android:padding="30dp"
+        app:srcCompat="@drawable/nav_logo_whiteout" />
+
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/ivLogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:hint="username"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/shape"
         android:ems="10"
+        android:hint="Username"
         android:inputType="textPersonName"
+        android:paddingStart="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="43dp" />
@@ -23,13 +38,15 @@
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@+id/etUsername"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:background="@drawable/shape"
         android:ems="10"
-        android:hint="password"
+        android:hint="Password"
         android:inputType="textPassword"
+        android:paddingStart="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="43dp" />
@@ -43,7 +60,9 @@
         android:layout_alignParentEnd="false"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="login" />
+        android:backgroundTint="#03A9F4"
+        android:text="log in"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/btnSignUp"
@@ -53,6 +72,9 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentEnd="false"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="sign up" />
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#9FDD57"
+        android:text="sign up"
+        android:textColor="#FFFFFF" />
+
 </RelativeLayout>
