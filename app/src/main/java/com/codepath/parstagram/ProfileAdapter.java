@@ -1,5 +1,6 @@
 package com.codepath.parstagram;
 
+
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Html;
@@ -15,17 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.parstagram.fragments.DetailsFragment;
-import com.codepath.parstagram.fragments.ProfileFragment;
+import com.parse.ParseFile;
 
 import java.util.Date;
 import java.util.List;
 
-public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>{
+public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder>{
 
     private Context context;
     private List<Post> posts;
 
-    public PostsAdapter(Context context, List<Post> posts) {
+    public ProfileAdapter(Context context, List<Post> posts) {
         this.context = context;
         this.posts = posts;
     }
@@ -33,12 +34,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_post_profile, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PostsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProfileAdapter.ViewHolder holder, int position) {
         Post post = posts.get(position);
         holder.bind(post);
     }
@@ -48,27 +49,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>{
         return posts.size();
     }
 
-    // Clean all elements of the recycler
-    public void clear() {
-        posts.clear();
-        notifyDataSetChanged();
-    }
-
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvUsername;
         private ImageView ivImage;
-        private TextView tvDescription;
-        private TextView tvTime;
-        private ImageView ivProfile;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvUsername = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
-            tvDescription = itemView.findViewById(R.id.tvDescription);
-            tvTime = itemView.findViewById(R.id.tvTime);
-            ivProfile = itemView.findViewById(R.id.ivProfile);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -88,49 +75,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>{
 
                 }
             });
-            ivProfile.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    int position = getAdapterPosition();
-                    Post post = posts.get(position);
-                    bundle.putString("user", post.getUser().getObjectId());
-                    ProfileFragment profile = new ProfileFragment();
-                    profile.setArguments(bundle);
-
-                    ((MainActivity)context).switchContent(R.id.flContainer, profile);
-
-                }
-            });
-
-            tvUsername.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    int position = getAdapterPosition();
-                    Post post = posts.get(position);
-                    bundle.putString("user", post.getUser().getObjectId());
-                    ProfileFragment profile = new ProfileFragment();
-                    profile.setArguments(bundle);
-
-                    ((MainActivity)context).switchContent(R.id.flContainer, profile);
-
-                }
-            });
         }
 
         public void bind(Post post) {
-            tvUsername.setText(post.getUser().getUsername());
-            String sourceString = "<b>" + post.getUser().getUsername() + "</b> " + post.getDescription();
-            tvDescription.setText(Html.fromHtml(sourceString));
-            tvTime.setText(calculateTimeAgo(post.getCreatedAt()));
             Glide.with(context)
-                    .load(post.getUser().getParseFile("pfp").getUrl())
-                    .circleCrop()
-                    .into(ivProfile);
-            Glide.with(context)
-                        .load(post.getImage().getUrl())
-                        .into(ivImage);
+                    .load(post.getImage().getUrl())
+                    .into(ivImage);
+
         }
     }
 

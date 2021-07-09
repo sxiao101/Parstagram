@@ -78,5 +78,4 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().replace(id, fragment).addToBackStack(null).commit();
     }
 
-
 }

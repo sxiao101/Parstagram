@@ -22,6 +22,7 @@ public class DetailsFragment extends Fragment {
     private ImageView ivImage;
     private TextView tvDescription;
     private TextView tvTime;
+    private ImageView ivProfile;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -43,6 +44,7 @@ public class DetailsFragment extends Fragment {
         ivImage = view.findViewById(R.id.ivImage);
         tvDescription = view.findViewById(R.id.tvDescription);
         tvTime = view.findViewById(R.id.tvTime);
+        ivProfile = view.findViewById(R.id.ivProfile);
 
         Bundle bundle = this.getArguments();
         String user = bundle.getString("user");
@@ -51,15 +53,13 @@ public class DetailsFragment extends Fragment {
         String sourceString = "<b>" + user + "</b> " + description;
         tvDescription.setText(Html.fromHtml(sourceString));
 
-        if(bundle.getBoolean("hasImage")) {
-            ivImage.setVisibility(View.VISIBLE);
-            Glide.with(getContext())
+        Glide.with(getContext())
+                .load(bundle.getString("pfp"))
+                .circleCrop()
+                .into(ivProfile);
+        Glide.with(getContext())
                     .load(bundle.getString("image"))
                     .into(ivImage);
-        } else {
-            ivImage.setVisibility(View.GONE);
-        }
-
         tvTime.setText(bundle.getString("time"));
     }
 }
