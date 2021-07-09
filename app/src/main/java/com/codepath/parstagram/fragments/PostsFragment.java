@@ -79,6 +79,7 @@ public class PostsFragment extends Fragment {
     }
 
 
+
     private void queryPosts(boolean refresh) {
         // Specify which class to query
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
